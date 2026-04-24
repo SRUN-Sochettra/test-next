@@ -1,5 +1,5 @@
 # test-next
-# frontend: test-next + backend: basic spring-boot
+## Frontend: [test-next](https://github.com/SRUN-Sochettra/test-next.gi) + Backend: [Basic-SpringBoot](https://github.com/SRUN-Sochettra/Basic-SpringBoot.git)
 
 > Employee & Product Management Interface
 
