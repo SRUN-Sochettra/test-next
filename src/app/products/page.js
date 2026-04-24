@@ -1,13 +1,15 @@
-import SearchEmployeeById from "@/src/components/employee_components/SearchEmployeeById";
-import { getEmployees } from "../../lib/api/employees";
-import CreateEmployee from "@/src/components/employee_components/CreateEmployee";
-import UpdateEmployee from "@/src/components/employee_components/UpdateEmployee";
-import DeleteEmployee from "@/src/components/employee_components/DeleteEmployee";
-import EmployeeTable from "@/src/components/employee_components/EmployeeTable";
+import { getProducts } from "@/src/lib/api/products";
+import { getCategories } from "@/src/lib/api/categories";
+import CreateProduct from "@/src/components/product_components/CreateProduct";
+import SearchProductById from "@/src/components/product_components/SearchProductById";
+import UpdateProduct from "@/src/components/product_components/UpdateProduct";
+import DeleteProduct from "@/src/components/product_components/DeleteProduct";
+import ProductTable from "@/src/components/product_components/ProductTable";
 import ProtectedAction from "@/src/components/ProtectedAction";
 
-export default async function EmployeesPage() {
-    const employees = await getEmployees();
+export default async function ProductsPage() {
+    const products = await getProducts();
+    const categories = await getCategories();
 
     return (
         <div className="min-h-screen bg-gray-900 text-white">
@@ -15,13 +17,16 @@ export default async function EmployeesPage() {
             <div className="bg-gray-800 border-b border-gray-700 shadow-md">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                     <h1 className="text-3xl font-bold text-white tracking-wide">
-                        👥 Employee Management
+                        📦 Product Management
                     </h1>
                     <p className="text-gray-400 mt-2">
-                        <span className="bg-blue-600 text-white text-sm font-medium px-3 py-1 rounded-full">
-                            {employees.length} employees
+                        <span className="bg-purple-600 text-white text-sm font-medium px-3 py-1 rounded-full">
+                            {products.length} products
                         </span>
-                        <span className="ml-3">found in the system</span>
+                        <span className="ml-2 bg-gray-600 text-white text-sm font-medium px-3 py-1 rounded-full">
+                            {categories.length} categories
+                        </span>
+                        <span className="ml-3">in the system</span>
                     </p>
                 </div>
             </div>
@@ -33,36 +38,36 @@ export default async function EmployeesPage() {
                     <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden">
                         <div className="bg-green-600 px-4 py-2 flex items-center justify-between">
                             <h2 className="text-white font-semibold text-sm tracking-wide uppercase">
-                                ➕ Create Employee
+                                ➕ Add Product
                             </h2>
                             <span className="text-white/60 text-xs">USER+</span>
                         </div>
                         <ProtectedAction requiredRole="USER">
-                            <CreateEmployee />
+                            <CreateProduct categories={categories} />
                         </ProtectedAction>
                     </div>
 
                     {/* Search - public */}
                     <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden">
-                        <div className="bg-blue-600 px-4 py-2 flex items-center justify-between">
+                        <div className="bg-purple-600 px-4 py-2 flex items-center justify-between">
                             <h2 className="text-white font-semibold text-sm tracking-wide uppercase">
-                                🔍 Search Employee
+                                🔍 Search Product
                             </h2>
                             <span className="text-white/60 text-xs">PUBLIC</span>
                         </div>
-                        <SearchEmployeeById />
+                        <SearchProductById categories={categories} />
                     </div>
 
                     {/* Update - needs USER or ADMIN */}
                     <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden">
-                        <div className="bg-yellow-600 px-4 py-2 flex items-center justify-between">
+                        <div className="bg-orange-600 px-4 py-2 flex items-center justify-between">
                             <h2 className="text-white font-semibold text-sm tracking-wide uppercase">
-                                ✏️ Update Employee
+                                ✏️ Update Product
                             </h2>
                             <span className="text-white/60 text-xs">USER+</span>
                         </div>
                         <ProtectedAction requiredRole="USER">
-                            <UpdateEmployee />
+                            <UpdateProduct categories={categories} />
                         </ProtectedAction>
                     </div>
 
@@ -70,18 +75,18 @@ export default async function EmployeesPage() {
                     <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg overflow-hidden">
                         <div className="bg-red-600 px-4 py-2 flex items-center justify-between">
                             <h2 className="text-white font-semibold text-sm tracking-wide uppercase">
-                                🗑️ Delete Employee
+                                🗑️ Delete Product
                             </h2>
                             <span className="text-white/60 text-xs">ADMIN</span>
                         </div>
                         <ProtectedAction requiredRole="ADMIN">
-                            <DeleteEmployee />
+                            <DeleteProduct categories={categories} />
                         </ProtectedAction>
                     </div>
                 </div>
 
                 {/* Table - public */}
-                <EmployeeTable employees={employees} />
+                <ProductTable products={products} categories={categories} />
             </div>
         </div>
     );
