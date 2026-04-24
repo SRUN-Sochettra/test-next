@@ -1,4 +1,5 @@
 # test-next
+# frontend: test-next + backend: basic spring-boot
 
 > Employee & Product Management Interface
 
