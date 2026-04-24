@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# test-next
 
-## Getting Started
+A frontend interface module for managing employees and products. Built with Next.js 16, React 19, and Tailwind CSS v4. Designed to interface directly with a Java Spring Boot backend API.
 
-First, run the development server:
+## Core Modules
+* **Employee Management:** Interface for CRUD operations on employee records.
+* **Product Management:** Interface for inventory and product catalog tracking.
+* **Secure Access:** JWT-based authentication and protected action routing.
 
-```bash
+## Technology Stack
+* Next.js 16.2.2
+* React 19.2.4
+* Tailwind CSS v4
+* React Hot Toast
+* Babel Plugin React Compiler
+
+## Environment Configuration
+
+Configure the backend API endpoint in a `.env.local` file. The application targets port `8080` by default.
+
+NEXT_PUBLIC_API_URL=http://localhost:8080
+
+## Initialization
+
+1. Install dependencies:
+npm install
+
+2. Execute the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Access the local environment at http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+src/app/about/page.js
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+export default function AboutPage() {
+  return (
+    <main className="p-8 max-w-7xl mx-auto bg-neutral-950 text-neutral-100 min-h-screen font-mono">
+      <h1 className="text-4xl font-bold mb-6 text-cyan-500 tracking-tight">System Identity</h1>
+      
+      <div className="border border-neutral-800 p-6 rounded-md bg-neutral-900/50 shadow-2xl">
+        <p className="text-lg mb-4 text-neutral-300">
+          Management System Frontend Module. Designed for high-performance CRUD operations and seamless backend synchronization.
+        </p>
+        
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold mb-4 text-cyan-400">Technical Specifications</h2>
+          <ul className="list-none space-y-2 text-neutral-400">
+            <li className="flex items-center gap-2">
+              <span className="text-cyan-500">▹</span> Framework: Next.js 16 (App Router)
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-cyan-500">▹</span> Interface: React 19
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-cyan-500">▹</span> Engine: Tailwind CSS v4
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-cyan-500">▹</span> API Gateway: http://localhost:8080
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+  );
+}
